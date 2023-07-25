@@ -321,6 +321,7 @@ public class SQLite {
         }
     }
     
+    // New Change Password Function
     public void changePassword(String username, String password) {
         String sql = "UPDATE users SET password = '" + password + "' WHERE username = '" + username + "'";
         System.out.println(sql);

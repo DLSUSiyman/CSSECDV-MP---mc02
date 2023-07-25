@@ -208,7 +208,7 @@ public class MgmtUser extends javax.swing.JPanel {
                 sqlite.changeRole( (String)tableModel.getValueAt(table.getSelectedRow(), 0), role);
                 
                 // Creating a Timestamp
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 LocalDateTime now = LocalDateTime.now();
                 System.out.println(dtf.format(now));
 
@@ -233,7 +233,7 @@ public class MgmtUser extends javax.swing.JPanel {
                 sqlite.removeUser( (String)tableModel.getValueAt(table.getSelectedRow(), 0));
                 
                 // Creating a Timestamp
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 LocalDateTime now = LocalDateTime.now();
                 String formattedDate = dtf.format(now);
                 System.out.println(dtf.format(now));
@@ -271,7 +271,7 @@ public class MgmtUser extends javax.swing.JPanel {
                 }
                 
                 // Creating a Timestamp
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                 LocalDateTime now = LocalDateTime.now();
                 System.out.println(dtf.format(now));
 
@@ -354,7 +354,7 @@ public class MgmtUser extends javax.swing.JPanel {
                         // checks if the passwords match
                         if (password.compareTo(confpass) == 0) {
                             // Creating a Timestamp
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                             LocalDateTime now = LocalDateTime.now();
                             System.out.println(dtf.format(now));
                             String formattedDate = dtf.format(now);
