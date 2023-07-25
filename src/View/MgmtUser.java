@@ -271,7 +271,75 @@ public class MgmtUser extends javax.swing.JPanel {
             
             if (result == JOptionPane.OK_OPTION) {
                 System.out.println(password.getText());
-                System.out.println(confpass.getText());   
+                System.out.println(confpass.getText());
+                /*
+                boolean isPasswordValid = true;
+                
+                // Checks if the password and confirm password is not empty upon clicking confirm
+                if(!password.isEmpty() && !confpass.isEmpty()){
+                    // Checks for the password based from the criteria given
+                    if(!confpass.isEmpty()) {
+                            boolean isValid = true;
+                            String validationMessage = "";
+                            if (password.length() < 8 || password.length() > 32) {
+                                isValid = false;
+                                validationMessage += "Password must be between 8 and 32 characters long.\n";
+                            }
+                            if (!password.matches(".*[A-Z].*")) {
+                                isValid = false;
+                                validationMessage += "Password must contain at least one uppercase letter.\n";
+                            }
+                            if (!password.matches(".*[a-z].*")) {
+                                isValid = false;
+                                validationMessage += "Password must contain at least one lowercase letter.\n";
+                            }
+                            if (!password.matches(".*\\d.*")) {
+                                isValid = false;
+                                validationMessage += "Password must contain at least one digit.\n";
+                            }
+                            if (!password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                                isValid = false;
+                                validationMessage += "Password must contain at least one symbol.\n";
+                            }
+
+                            if(!isValid){
+                                isPasswordValid = false;
+                                javax.swing.JOptionPane.showMessageDialog(null, validationMessage, "Register Message", JOptionPane.PLAIN_MESSAGE);
+                            }
+                    }
+                }
+                
+                // Checks if the password is valid
+                if(isPasswordValid = true) {
+                    // checks if the passwords match
+                    if (password.compareTo(confpass) == 0) {
+                        // Creating a Timestamp
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        LocalDateTime now = LocalDateTime.now();
+                        System.out.println(dtf.format(now));
+
+                        // Authentication Logs
+                        sqlite.addLogs("Register", username, "Successful", dtf.format(now).toString());
+
+                        // Notifies the user that the account has been registered
+                        javax.swing.JOptionPane.showMessageDialog(null, "Account has been registered!", "Register Message", JOptionPane.PLAIN_MESSAGE);
+
+                        // Registers the account in the database
+                        frame.registerAction(hashCreator.createMD5Hash(passwordFld.getText()), confpassFld.getText());
+
+                        // Clears the username, password, and confirm password field
+                        frame.registerPnl.usernameFld.setText("");
+                        frame.registerPnl.passwordFld.setText("");
+                        frame.registerPnl.confpassFld.setText("");
+                    } else {
+                        // Notifies the user that the password and confirm password does not match
+                        javax.swing.JOptionPane.showMessageDialog(null, "Password and Confirm password does not match", "Register Message", JOptionPane.PLAIN_MESSAGE);
+
+                        // Clears the password and confirm password 
+                        frame.registerPnl.passwordFld.setText("");
+                        frame.registerPnl.confpassFld.setText("");
+                    }
+                }*/
             }
         }
     }//GEN-LAST:event_chgpassBtnActionPerformed
