@@ -125,7 +125,7 @@ public class Register extends javax.swing.JPanel {
     	if(!username.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty()) {
     		// Checks if the username is 6 to 30 charcters long
     		if(username.length() < 6 || username.length() > 30) {
-    			javax.swing.JOptionPane.showMessageDialog(null, "Choose a username 6–30 characters long.", "Register Message", JOptionPane.PLAIN_MESSAGE);
+    			javax.swing.JOptionPane.showMessageDialog(null, "Choose a username 6-30 characters long.", "Register Message", JOptionPane.PLAIN_MESSAGE);
     		} else {
     			boolean isUsernameValid = true;
         		boolean isPasswordValid = true;

@@ -7,6 +7,8 @@ package View;
 
 import Controller.SQLite;
 import Model.User;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -30,7 +32,7 @@ public class MgmtUser extends javax.swing.JPanel {
         this.sqlite = sqlite;
         tableModel = (DefaultTableModel)table.getModel();
         table.getTableHeader().setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 14));
-        
+    
 //        UNCOMMENT TO DISABLE BUTTONS
 //        editBtn.setVisible(false);
 //        deleteBtn.setVisible(false);
@@ -191,7 +193,21 @@ public class MgmtUser extends javax.swing.JPanel {
             if(result != null){
                 System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
                 System.out.println(result.charAt(0));
+                
+                // Trim the option the user chose
+                String NumericPart = result.split("-")[0].trim();
+    
+                // Parse the numeric part to an integer
+                int role = Integer.parseInt(NumericPart);
+                System.out.println(role);
+                
+                // call change role function from sqlite
+                sqlite.changeRole( (String)tableModel.getValueAt(table.getSelectedRow(), 0), role);
+                
+                // refreshes table to show update value
+                init();
             }
+            
         }
     }//GEN-LAST:event_editRoleBtnActionPerformed
 
@@ -201,6 +217,12 @@ public class MgmtUser extends javax.swing.JPanel {
             
             if (result == JOptionPane.YES_OPTION) {
                 System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
+                
+                // calls remove function on selected row of user
+                sqlite.removeUser( (String)tableModel.getValueAt(table.getSelectedRow(), 0));
+                
+                // refreshes table to show update value
+                init();
             }
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -211,11 +233,25 @@ public class MgmtUser extends javax.swing.JPanel {
             if("1".equals(tableModel.getValueAt(table.getSelectedRow(), 3) + "")){
                 state = "unlock";
             }
-            
+           
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to " + state + " " + tableModel.getValueAt(table.getSelectedRow(), 0) + "?", "DELETE USER", JOptionPane.YES_NO_OPTION);
             
             if (result == JOptionPane.YES_OPTION) {
                 System.out.println(tableModel.getValueAt(table.getSelectedRow(), 0));
+                int lock = (int) tableModel.getValueAt(table.getSelectedRow(), 3);
+                System.out.println(lock);
+                        
+                // checks if the state is lock or unlock
+                if ("lock".equals(state)) {
+                    lock = 1;
+                    sqlite.changeLock( (String)tableModel.getValueAt(table.getSelectedRow(), 0), lock);
+                } else {
+                    lock = 0;
+                    sqlite.changeLock( (String)tableModel.getValueAt(table.getSelectedRow(), 0), lock);
+                }
+
+                // refreshes table to show update value
+                init();
             }
         }
     }//GEN-LAST:event_lockBtnActionPerformed
@@ -235,11 +271,10 @@ public class MgmtUser extends javax.swing.JPanel {
             
             if (result == JOptionPane.OK_OPTION) {
                 System.out.println(password.getText());
-                System.out.println(confpass.getText());
+                System.out.println(confpass.getText());   
             }
         }
     }//GEN-LAST:event_chgpassBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton chgpassBtn;
@@ -249,4 +284,5 @@ public class MgmtUser extends javax.swing.JPanel {
     private javax.swing.JButton lockBtn;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -292,12 +292,29 @@ public class SQLite {
     }
     
     public void changeRole(String username, int role) {
-        String sql = "UPDATE users SET role = " + role + " WHERE username = " + username + ";";
+        // added '
+        String sql = "UPDATE users SET role = " + role + " WHERE username = '" + username + "'";
+        System.out.println(sql);
         
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()){
-            stmt.execute(sql);
             
+            // changed execute to executeUpdate
+            stmt.executeUpdate(sql);
+        } catch (Exception ex) {
+            System.out.print(ex);
+        }
+    }
+    
+    public void changeLock(String username, int lock) {
+        String sql = "UPDATE users SET locked = " + lock + " WHERE username = '" + username + "'";
+        System.out.println(sql);
+        
+        try (Connection conn = DriverManager.getConnection(driverURL);
+            Statement stmt = conn.createStatement()){
+            
+            // changed execute to executeUpdate
+            stmt.executeUpdate(sql);
         } catch (Exception ex) {
             System.out.print(ex);
         }

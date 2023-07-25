@@ -119,13 +119,15 @@ public class Login extends javax.swing.JPanel {
 		this.sqlite = db;
 	}
 	
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException {//GEN-FIRST:event_loginBtnActionPerformed	
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) throws NoSuchAlgorithmException {                                          
     	// -1 --> incomplete fields 0 --> incorrect 1 --> correct
     	int isValid = 0;
     	
     	String username = usernameFld.getText().toLowerCase();
     	String password = passwordFld.getText();
     	
+        //frame.mainNav();
+        
     	if(!username.isEmpty() && !password.isEmpty()) {
     		ArrayList<User> users = sqlite.getUsers();
             for(int nCtr = 0; nCtr < users.size(); nCtr++){
@@ -178,7 +180,7 @@ public class Login extends javax.swing.JPanel {
     	} else {
     		javax.swing.JOptionPane.showMessageDialog(null, "Complete the form", "Login Message", JOptionPane.PLAIN_MESSAGE);
     	}
-    }//GEN-LAST:event_loginBtnActionPerformed
+    }                                        
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
     	
@@ -191,7 +193,7 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_registerBtnActionPerformed
     
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwordFld;
