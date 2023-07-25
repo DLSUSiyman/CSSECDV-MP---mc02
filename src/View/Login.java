@@ -126,7 +126,7 @@ public class Login extends javax.swing.JPanel {
     	String username = usernameFld.getText().toLowerCase();
     	String password = passwordFld.getText();
     	
-        //frame.mainNav();
+        frame.mainNav();
         
     	if(!username.isEmpty() && !password.isEmpty()) {
     		ArrayList<User> users = sqlite.getUsers();

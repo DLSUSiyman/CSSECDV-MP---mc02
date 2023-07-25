@@ -159,7 +159,7 @@ public class SQLite {
     
     public void addLogs(String event, String username, String desc, String timestamp) {
         String sql = "INSERT INTO logs(event,username,desc,timestamp) VALUES('" + event + "','" + username + "','" + desc + "','" + timestamp + "')";
-        
+       
         try (Connection conn = DriverManager.getConnection(driverURL);
             Statement stmt = conn.createStatement()){
             stmt.execute(sql);
@@ -306,8 +306,23 @@ public class SQLite {
         }
     }
     
+    // New Change Lock Function
     public void changeLock(String username, int lock) {
         String sql = "UPDATE users SET locked = " + lock + " WHERE username = '" + username + "'";
+        System.out.println(sql);
+        
+        try (Connection conn = DriverManager.getConnection(driverURL);
+            Statement stmt = conn.createStatement()){
+            
+            // changed execute to executeUpdate
+            stmt.executeUpdate(sql);
+        } catch (Exception ex) {
+            System.out.print(ex);
+        }
+    }
+    
+    public void changePassword(String username, String password) {
+        String sql = "UPDATE users SET password = '" + password + "' WHERE username = '" + username + "'";
         System.out.println(sql);
         
         try (Connection conn = DriverManager.getConnection(driverURL);
