@@ -206,7 +206,7 @@ public class Register extends javax.swing.JPanel {
         	        	frame.registerPnl.passwordFld.setText("");
         	        	frame.registerPnl.confpassFld.setText("");
                 	}
-                }
+                    }
     		}
     	} else {
 		 	javax.swing.JOptionPane.showMessageDialog(null, "Complete the form", "Register Message", JOptionPane.PLAIN_MESSAGE);
